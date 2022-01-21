@@ -1,7 +1,7 @@
 systemctl enable dhcpcd.service
 systemctl enable iwd.service
 
-reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
+# reflector --verbose --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 
 ln -sf /usr/share/zoneinfo/Asia/Riyadh /etc/localtime
 hwclock --systohc
@@ -30,13 +30,13 @@ echo -e "title\t\tArch Linux\nlinux\t\t/vmlinuz-linux\ninitrd\t\t/intel-ucode.im
 
 echo -e "blacklist\tnouveau" > /etc/modprobe.d/blacklist.conf
 
-printf "Type NEW user name: "
-read user_name
-printf "Type NEW user password: "
-read user_pass
-useradd -mg users -G audio,video,games,storage,optical,wheel,power,scanner,lp -s /bin/bash $user_name
-echo -e "$user_pass\n$user_pass" | passswd $user_name
-echo -e "$user_pass\n$user_pass" | passswd
-echo -e "\n## $user_name'\'s' modifications\n$user_name ALL=(ALL) ALL\n%sudo ALL=(ALL) ALL" >> /etc/sudoers
+# printf "Type NEW user name: "
+# read user_name
+# printf "Type NEW user password: "
+# read user_pass
+# useradd -mg users -G audio,video,games,storage,optical,wheel,power,scanner,lp -s /bin/bash $user_name
+# echo -e "$user_pass\n$user_pass" | passswd $user_name
+# echo -e "$user_pass\n$user_pass" | passswd
+# echo -e "\n## $user_name'\'s' modifications\n$user_name ALL=(ALL) ALL\n%sudo ALL=(ALL) ALL" >> /etc/sudoers
 
-echo -e "\n[Settings]\nAutoConnect=true" >> /var/lib/iwd/$WiFi".psk"
+# echo -e "\n[Settings]\nAutoConnect=true" >> /var/lib/iwd/$WiFi".psk"
