@@ -8,8 +8,8 @@ hwclock --systohc
 
 nano /etc/locale.gen
 locale-gen
-echo "LANG=en_US.UTF-8" > /etc/locale.conf
-echo "FONT=ter-124n" > /etc/vconsole.conf
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+echo FONT=ter-124n > /etc/vconsole.conf
 
 echo BUG > /etc/hostname
 echo -e "127.0.0.1\tlocalhost\n::1\t\tlocalhost\n127.0.1.1\tBUG.localdomain BUG" >> /etc/hosts
@@ -17,7 +17,7 @@ echo -e "127.0.0.1\tlocalhost\n::1\t\tlocalhost\n127.0.1.1\tBUG.localdomain BUG"
 echo -e "[archlinuxfr]\nSigLevel = Never\nServer = http://repo.archlinux.fr/\$arch" >> /etc/pacman.conf
 pacman -Sy
 
-echo -e "Add ( btrfs ) into modules!\nAdd ( consolefont encrypt lvm2) into HOOKS!\nMove ( keyboard ) before ( filesystems ) in HOOKS!\nPress Enter to proceed..."
+echo -e "Add ( btrfs ) into modules!\nAdd ( consolefont encrypt lvm2 ) into HOOKS!\nMove ( keyboard ) before ( filesystems ) in HOOKS!\nPress Enter to proceed..."
 read y
 nano /etc/mkinitcpio.conf
 mkinitcpio -p linux
@@ -26,7 +26,7 @@ bootctl --path=/boot install
 echo -e "default\t\tarch\nconsole-mode\tmax\neditor\t\tno\ntimeout\t\t0" >> /boot/loader/loader.conf
 partuuid=$(lsblk -o PARTUUID /dev/$drive"2")
 partuuid=${partuuid: 9}
-echo -e "title\t\tArch Linux\nlinux\t\t/vmlinuz-linux\ninitrd\t\t/intel-ucode.img\ninitrd\t\tinitramfs-linux.img\noptions\t\tcryptdevice=PARTUUID=\"$partuuid\":cryptarch root=/dev/mapper/cryptarch rw pcie_aspm=off ec_sys.write_support=1\n#quiet splash" >> /boot/loader/entries/arch.conf
+echo -e "title\t\tArch Linux\nlinux\t\t/vmlinuz-linux\ninitrd\t\t/intel-ucode.img\ninitrd\t\tinitramfs-linux.img\noptions\t\tcryptdevice=PARTUUID=\"$partuuid\":cryptarch root=/dev/mapper/cryptarch rootflags=subvol=@ rw pcie_aspm=off ec_sys.write_support=1\n#quiet splash" >> /boot/loader/entries/arch.conf
 
 echo -e "blacklist\tnouveau" > /etc/modprobe.d/blacklist.conf
 
